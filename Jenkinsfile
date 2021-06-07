@@ -1,14 +1,17 @@
 pipeline {
 	agent any
+	environment {
+	    MAVEN_HOME = tool('Maven')
+	}
 	stages {
 		stage("Compile") {
 			steps {
-				sh "mvn compile"
+				sh "${MAVEN_HOME}/bin/mvn compile"
 			}
 		}
 		stage("Unit test") {
 			steps {
-				sh "mvn test"
+				sh "${MAVEN_HOME}/bin/mvn test"
 			}
 		}
 	}
